@@ -1,0 +1,15 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+     <item
+                android:id="@+id/menu_profile"
+                android:title="Profile"
+                app:showAsAction="always"/>
+     <item
+                android:id="@+id/leaderboard"
+                android:title="LeaderBoard"
+                app:showAsAction="always"/>
+     <item
+         android:id="@+id/menu_sign_out"
+         android:title="Sign Out"
+         app:showAsAction="always"/>
+</menu>

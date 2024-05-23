@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="top|center_horizontal"
+    tools:context=".ResultActivity">
+        
+       <androidx.constraintlayout.widget.ConstraintLayout
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content">
+
+           <ImageView
+               android:layout_width="match_parent"
+               android:layout_height="match_parent"
+               android:src="@drawable/teal_curv_background"
+               android:scaleType="fitXY"/>
+
+           <TextView
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:text="Leaderboard"
+               android:textColor="@color/white"
+               android:textSize="22sp"
+               android:fontFamily="@font/merriweathersans_semibold"
+               app:layout_constraintStart_toStartOf="parent"
+               app:layout_constraintEnd_toEndOf="parent"
+               app:layout_constraintTop_toTopOf="parent"
+               android:layout_marginTop="10dp"/>
+
+           <FrameLayout
+               android:layout_width="150dp"
+               android:layout_height="150dp"
+               android:id="@+id/image_FrameLayout"
+               app:layout_constraintStart_toStartOf="parent"
+               app:layout_constraintEnd_toEndOf="parent"
+               app:layout_constraintTop_toTopOf="parent"
+               app:layout_constraintBottom_toBottomOf="parent">
+
+           <de.hdodenhof.circleimageview.CircleImageView
+               android:id="@+id/rank1Image"
+               android:layout_width="150dp"
+               android:layout_height="150dp"
+               android:src="@drawable/ic_launcher_foreground"
+               app:civ_border_color="@color/yellowAccent"
+               app:civ_border_width="2dp"
+               android:layout_marginBottom="30dp"/>
+
+               <ProgressBar
+                   android:id="@+id/loading_rank1Image"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:layout_gravity="center"
+                   android:visibility="gone" />
+
+           </FrameLayout>
+
+           <ImageView
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:src="@drawable/crown"
+               app:layout_constraintStart_toStartOf="parent"
+               app:layout_constraintEnd_toEndOf="parent"
+               app:layout_constraintBottom_toTopOf="@+id/image_FrameLayout"
+               />
+
+           <TextView
+               android:id="@id/rank1Name"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:text="JohnDoe"
+               android:textColor="@color/white"
+               android:textSize="18sp"
+               app:layout_constraintStart_toStartOf="parent"
+               app:layout_constraintEnd_toEndOf="parent"
+               app:layout_constraintTop_toBottomOf="@+id/image_FrameLayout"
+               android:layout_marginTop="4dp"/>
+
+           <TextView
+               android:id="@+id/rank1Score"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:text="10 / 10"
+               android:textColor="@color/white"
+               android:textSize="15sp"
+               app:layout_constraintStart_toStartOf="parent"
+               app:layout_constraintEnd_toEndOf="parent"
+               app:layout_constraintTop_toBottomOf="@+id/rank1Name"
+               android:layout_marginTop="8dp"/>
+
+
+       </androidx.constraintlayout.widget.ConstraintLayout>
+
+       <androidx.recyclerview.widget.RecyclerView
+           android:id="@+id/recyclerVIew"
+           android:layout_width="match_parent"
+           android:layout_height="match_parent"
+           android:layout_gravity="top|center_horizontal"
+           tools:listitem="@layout/user_rank_cardview"/>
+
+</LinearLayout>

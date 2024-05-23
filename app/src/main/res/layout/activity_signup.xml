@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SignupActivity"
+    android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/imgView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fitsSystemWindows="true"
+                android:scaleType="fitXY"
+                android:src="@drawable/signup"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/signupView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Signup"
+                android:textSize="40sp"
+                android:textColor="@color/brown"
+                android:fontFamily="@font/merriweathersans_bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_marginTop="260dp"
+                android:layout_marginStart="30dp"/>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/remailTV"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@+id/signupView"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginBottom="12dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginHorizontal="30dp"
+                android:hint="User Email"
+                app:hintTextColor="@color/brown"
+                app:cursorColor="@color/brown"
+                app:boxBackgroundColor="@color/white"
+                app:boxStrokeColor="@color/brown"
+                app:boxCornerRadiusTopStart="8dp"
+                app:boxCornerRadiusTopEnd="8dp"
+                app:boxCornerRadiusBottomStart="8dp"
+                app:boxCornerRadiusBottomEnd="8dp"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/rpassTV"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:passwordToggleEnabled="true"
+                app:passwordToggleTint="@color/brown"
+                app:layout_constraintTop_toBottomOf="@+id/remailTV"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginTop="12dp"
+                android:layout_marginHorizontal="30dp"
+                android:hint="Password"
+                app:boxCornerRadiusTopStart="8dp"
+                app:boxCornerRadiusTopEnd="8dp"
+                app:boxCornerRadiusBottomStart="8dp"
+                app:boxCornerRadiusBottomEnd="8dp"
+                app:hintTextColor="@color/brown"
+                app:cursorColor="@color/brown"
+                app:boxBackgroundColor="@color/white"
+                app:boxStrokeColor="@color/brown"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:inputType="textPassword"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/rcpassTV"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:passwordToggleEnabled="true"
+                app:passwordToggleTint="@color/brown"
+                app:layout_constraintTop_toBottomOf="@+id/rpassTV"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginTop="12dp"
+                android:layout_marginHorizontal="30dp"
+                android:hint="Confirm Password"
+                app:boxCornerRadiusTopStart="8dp"
+                app:boxCornerRadiusTopEnd="8dp"
+                app:boxCornerRadiusBottomStart="8dp"
+                app:boxCornerRadiusBottomEnd="8dp"
+                app:hintTextColor="@color/brown"
+                app:cursorColor="@color/brown"
+                app:boxBackgroundColor="@color/white"
+                app:boxStrokeColor="@color/brown"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:inputType="textPassword"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <Button
+                android:id="@+id/registerbtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Regsiter"
+                android:textSize="18sp"
+                android:textAllCaps="false"
+                android:paddingHorizontal="6dp"
+                android:paddingVertical="3dp"
+                android:layout_marginTop="24dp"
+                android:background="@drawable/rect_curv_btn"
+                app:layout_constraintTop_toBottomOf="@+id/rcpassTV"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent">
+
+            </Button>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="30dp"
+                android:gravity="center_horizontal"
+                app:layout_constraintTop_toBottomOf="@+id/registerbtn"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="have already register?"
+                    android:textSize="16sp"
+                    android:fontFamily="@font/merriweathersans_bold"
+                    android:textAllCaps="false"
+                    android:layout_marginEnd="0dp"
+                    android:textColor="@color/darkGreen"/>
+
+                <Button
+                    android:id="@+id/login_text_button"
+                    style="@style/Widget.MaterialComponents.Button.TextButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="-10dp"
+                    android:textSize="16sp"
+                    android:text="Login"
+                    android:fontFamily="@font/merriweathersans_bold"
+                    android:textColor="@color/brown"
+                    android:textAllCaps="false"/>
+
+            </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

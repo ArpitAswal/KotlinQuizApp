@@ -1,0 +1,23 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Base.Theme.QuizApp" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+        <!-- Customize your light theme here. -->
+        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <item name="android:statusBarColor">#CCCACA</item>
+        <item name="colorPrimary">@color/brown</item>
+    </style>
+
+    <style name="Theme.QuizApp" parent="Base.Theme.QuizApp" />
+    <style name="AppTheme.FullScreen" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="colorPrimary">@color/brown</item>
+        <!-- Other style attributes -->
+    </style>
+
+    <style name="ScreenTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="colorPrimary">@color/yellowAccent</item>
+    </style>
+</resources>

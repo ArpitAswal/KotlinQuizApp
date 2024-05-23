@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="CustomOutlinedBoxTextInputLayout" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
+        <!-- Set the default hint text color -->
+        <item name="hintTextColor">@color/white</item>
+        <!-- Set the default stroke color -->
+        <item name="boxStrokeColor">@color/white</item>
+        <item name="cursorColor">@color/white</item>
+        <item name="background">@color/tealDark</item>
+    </style>
+
+</resources>
