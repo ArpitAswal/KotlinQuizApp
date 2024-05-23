@@ -15,7 +15,6 @@ The Home Screen features a menu with the following options:
 Profile Settings: Allows users to manage their profile details.
 Leaderboard: Displays the top five highest-scoring users.
 Sign Out: Users can securely sign out of their account.
-
 To start the quiz, users must enter their name.
 
 Quiz Format: The quiz consists of 10 questions that must be answered within a 1-minute timeframe.
@@ -30,8 +29,11 @@ Only the top five user scores are shown on the leaderboard.
 Users can return to the Home Screen to start a new quiz or sign out from the app.
 
 Technologies Used:
+
 Kotlin: Primary programming language for app development.
+
 Firebase: For authentication and user management.
+
 Android SDK: For building and deploying the Android application.
 
 
