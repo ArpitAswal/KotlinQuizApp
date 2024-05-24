@@ -52,7 +52,7 @@ Note:  .If the user first register with Gmail/Password and then SignIn with Goog
  
 3. In Profile setting screen a user can set his name, password and profile image
 
-![Screenshot_2024-05-24-22-53-28-747_com example quizapp](https://github.com/ArpitAswal/KotlinQuizApp/assets/87036588/b6e4bfd3-2745-4bd3-a78c-fd53a1513e9f)
+![IMG_20240524_225858](https://github.com/ArpitAswal/KotlinQuizApp/assets/87036588/2d87dba6-fba8-4346-b977-3bf9c8a1890c)
 
 4. After starting quiz, user has to answers 10 questions within 1 minute, navigating between questions as needed.
 
