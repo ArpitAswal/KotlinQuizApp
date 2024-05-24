@@ -46,7 +46,6 @@ class ResultActivity : AppCompatActivity() {
         rank1Score = findViewById(R.id.rank1Score)
         rank1Image = findViewById(R.id.rank1Image)
         loadingImage = findViewById(R.id.loading_rank1Image)
-        loadingImage.visibility = View.VISIBLE
         getRanks()
 
     }

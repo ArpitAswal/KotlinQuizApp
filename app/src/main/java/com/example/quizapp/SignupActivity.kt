@@ -10,9 +10,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import com.google.android.material.textfield.TextInputLayout
 import com.google.firebase.Firebase
-import com.google.firebase.auth.AuthCredential
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseAuthException
 import com.google.firebase.auth.auth
 
 class SignupActivity : AppCompatActivity() {
@@ -48,7 +46,7 @@ class SignupActivity : AppCompatActivity() {
                     .addOnCompleteListener(this) { task ->
                         if (task.isSuccessful) {
                             // Registration successful, handle user
-                            FirebaseRealTimeDatabase.initializeDatabaseReference()
+                            FirebaseRealTimeDatabase.initializeDatabaseReference(){}
                             Toast.makeText(
                                 this@SignupActivity,
                                 "Account Registered Successfully",
@@ -105,12 +103,12 @@ class SignupActivity : AppCompatActivity() {
             userName = ""
         )
         rdb.setValue(userInfo).addOnSuccessListener {
-            startActivity(
-                Intent(
-                    this@SignupActivity,
-                    HomeActivity::class.java
-                ).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-            )
+            val intent =   Intent(
+                this@SignupActivity,
+                ProfileActivity::class.java
+            ).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+            intent.putExtra("fromSignUp","HomeScreen")
+            startActivity(intent)
             finish()
         }.addOnFailureListener {
             Toast.makeText(this, "user info does not saved", Toast.LENGTH_SHORT).show()

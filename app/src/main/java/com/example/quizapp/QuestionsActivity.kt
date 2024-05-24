@@ -105,7 +105,6 @@ class QuestionsActivity : AppCompatActivity() {
             if(task.isSuccessful){
                 val value = task.result.toObject(ScoreClass::class.java)
                 if(value!=null){
-                    Log.i("value",value.toString())
                     val previousScore = value.score
                     val previousTime = value.time
                     val time = previousTime.split(":")[1].toInt()
@@ -132,6 +131,9 @@ class QuestionsActivity : AppCompatActivity() {
                     }
                 }
                 else{
+                    if(username.isEmpty()){
+                        username = "UnKnown User"
+                    }
                     val score = ScoreClass(
                         userId = id,
                         username = username,
@@ -154,7 +156,6 @@ class QuestionsActivity : AppCompatActivity() {
     override fun onDestroy() {
         super.onDestroy()
         countdownTimer.cancel() // Cancel the timer to avoid memory leaks
-        Log.i("timer", "TimerDestroy")
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -166,8 +167,6 @@ class QuestionsActivity : AppCompatActivity() {
         btnPrevious = findViewById(R.id.btnPrevious)
         btnNext = findViewById(R.id.btnNext)
         btnSubmit = findViewById(R.id.btnSubmit)
-        val intent = intent
-        username = intent.getStringExtra("username")!!
         val inflater = LayoutInflater.from(this)
         val view = inflater.inflate(R.layout.fragment_questions, null)
         radioGroup = view.findViewById(R.id.radioGroup)
@@ -195,11 +194,12 @@ class QuestionsActivity : AppCompatActivity() {
 
     private fun getProfileSrc() {
         // Set the duration of the countdown timer to 5 minutes (300,000 milliseconds)
-        dbref = FirebaseRealTimeDatabase.initializeDatabaseReference()
+        dbref = FirebaseRealTimeDatabase.initializeDatabaseReference(){}
         dbref.addListenerForSingleValueEvent(object: ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
                 val data = snapshot.getValue(UserInfo::class.java)
                 profileSrc = data!!.profileImage
+                username = data.userName
             }
 
             override fun onCancelled(error: DatabaseError) {
@@ -211,21 +211,25 @@ class QuestionsActivity : AppCompatActivity() {
     // Method to update button visibility based on current ViewPager position
     private fun updateButtonVisibility(position: Int) {
         val pageCount = viewPager!!.adapter!!.count
-        if (position == 0) {
-            // First question, only show Next button
-            btnPrevious!!.visibility = View.GONE
-            btnNext!!.visibility = View.VISIBLE
-            btnSubmit!!.visibility = View.GONE
-        } else if (position == pageCount - 1) {
-            // Last question, show Submit button instead of Next
-            btnPrevious!!.visibility = View.VISIBLE
-            btnNext!!.visibility = View.GONE
-            btnSubmit!!.visibility = View.VISIBLE
-        } else {
-            // Middle questions, show both Previous and Next buttons
-            btnPrevious!!.visibility = View.VISIBLE
-            btnNext!!.visibility = View.VISIBLE
-            btnSubmit!!.visibility = View.GONE
+        when (position) {
+            0 -> {
+                // First question, only show Next button
+                btnPrevious!!.visibility = View.GONE
+                btnNext!!.visibility = View.VISIBLE
+                btnSubmit!!.visibility = View.GONE
+            }
+            pageCount - 1 -> {
+                // Last question, show Submit button instead of Next
+                btnPrevious!!.visibility = View.VISIBLE
+                btnNext!!.visibility = View.GONE
+                btnSubmit!!.visibility = View.VISIBLE
+            }
+            else -> {
+                // Middle questions, show both Previous and Next buttons
+                btnPrevious!!.visibility = View.VISIBLE
+                btnNext!!.visibility = View.VISIBLE
+                btnSubmit!!.visibility = View.GONE
+            }
         }
     }
 

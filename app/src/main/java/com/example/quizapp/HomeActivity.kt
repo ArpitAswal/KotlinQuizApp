@@ -25,22 +25,7 @@ class HomeActivity : AppCompatActivity() {
     private lateinit var currentUser: FirebaseAuth
     private lateinit var start: Button
     private lateinit var menu: ImageButton
-    private lateinit var nameTV: TextInputLayout
 
-    override fun onStart() {
-        super.onStart()
-        val dbref = FirebaseRealTimeDatabase.initializeDatabaseReference()
-        dbref.addListenerForSingleValueEvent(object : ValueEventListener {
-            override fun onDataChange(snapshot: DataSnapshot) {
-                val name = snapshot.child("userName").value
-                nameTV.editText?.setText(name.toString())
-            }
-
-            override fun onCancelled(error: DatabaseError) {
-                TODO("Not yet implemented")
-            }
-        })
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -48,25 +33,10 @@ class HomeActivity : AppCompatActivity() {
         currentUser = FirebaseAuth.getInstance()
         start = findViewById(R.id.startBtn)
         menu = findViewById(R.id.menuButton)
-        nameTV = findViewById(R.id.usernameTV)
 
         start.setOnClickListener {
-            val username = nameTV.editText?.text.toString()
-            if (TextUtils.isEmpty(username)) {
-                Toast.makeText(this, "Before start enter your name", Toast.LENGTH_LONG).show()
-            } else {
-                val map = mutableMapOf<String,Any>()
-                val rdb = FirebaseRealTimeDatabase.db
-                map["userName"] = username
-                rdb.updateChildren(map).addOnSuccessListener {
-                    val intent = Intent(this, QuestionsActivity::class.java)
-                    intent.putExtra("username", username)
-                    startActivity(intent)
-                }.addOnFailureListener {
-                    Toast.makeText(this, it.message.toString(), Toast.LENGTH_SHORT).show()
-                }
-
-            }
+            val intent = Intent(this, QuestionsActivity::class.java)
+            startActivity(intent)
         }
 
         menu.setOnClickListener {

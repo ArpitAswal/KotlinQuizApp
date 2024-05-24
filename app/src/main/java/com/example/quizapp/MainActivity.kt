@@ -16,6 +16,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
 import com.google.android.gms.common.api.ApiException
 import com.google.android.material.textfield.TextInputLayout
+import com.google.firebase.auth.EmailAuthProvider
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
@@ -58,11 +59,7 @@ class MainActivity : AppCompatActivity() {
                     startActivity(Intent(this@MainActivity, HomeActivity::class.java))
                     finish()
                 }.addOnFailureListener {
-                    if (it.message?.contains("The supplied auth credential is incorrect, malformed or has expired.") == true) {
-                        showCustomAlertDialog(this)
-                    } else {
-                        Toast.makeText(this, it.message.toString(), Toast.LENGTH_SHORT).show()
-                    }
+                    Toast.makeText(this, it.message.toString(), Toast.LENGTH_LONG).show()
                 }
             }
         }
@@ -77,6 +74,21 @@ class MainActivity : AppCompatActivity() {
         register.setOnClickListener {
             startActivity(Intent(this@MainActivity, SignupActivity::class.java))
             finish()
+        }
+
+        forgotBtn.setOnClickListener {
+            val email = email.editText?.text.toString()
+
+            if (email.isEmpty()) {
+                // Show error message for empty fields
+                displayToast("Enter your email")
+            } else {
+                auth.sendPasswordResetEmail(email).addOnSuccessListener {
+                    displayToast("A reset password link sent to given email address")
+                }.addOnFailureListener {
+                    displayToast("Failed to reset password")
+                }
+            }
         }
 
     }
@@ -102,8 +114,23 @@ class MainActivity : AppCompatActivity() {
                 val credential = GoogleAuthProvider.getCredential(account.idToken, null)
                 auth.signInWithCredential(credential)
                     .addOnSuccessListener {
-                        FirebaseRealTimeDatabase.initializeDatabaseReference()
-                        navigate()
+                        FirebaseRealTimeDatabase.initializeDatabaseReference{ data->
+                            if(data != null){
+                                val cred = EmailAuthProvider.getCredential(account.email.toString(), data)
+                                auth.currentUser?.linkWithCredential(cred)?.addOnSuccessListener {
+                                  navigate()
+                                }?.addOnFailureListener {
+                                    if(it.message.toString() == "User has already been linked to the given provider"){
+                                        navigate()
+                                    }
+                                    else {
+                                        displayToast(it.message.toString())
+                                    }
+                                }
+                            } else{
+                                navigate()
+                            }
+                        }
                     }.addOnFailureListener {
                         Toast.makeText(this@MainActivity, it.message.toString(), Toast.LENGTH_SHORT)
                             .show()
@@ -113,25 +140,6 @@ class MainActivity : AppCompatActivity() {
                 displayToast(e.message.toString())
             }
         }
-    }
-
-    private fun showCustomAlertDialog(context: Context) {
-        // Create an AlertDialog Builder
-        val builder = AlertDialog.Builder(context)
-
-        // Set the message and title of the dialog
-        builder.setMessage("You already SignIn with Google Account. Please SignIn with Google")
-            .setTitle("Email Alert")
-
-        // Set the positive button and its click listener
-        builder.setPositiveButton("OK") { dialog, id ->
-            // User clicked "Yes" button
-            dialog.dismiss()
-        }
-
-        // Create and show the AlertDialog
-        val dialog = builder.create()
-        dialog.show()
     }
 
     private fun navigate() {
@@ -174,7 +182,7 @@ class MainActivity : AppCompatActivity() {
                     )
 
                     rdb.setValue(user).addOnSuccessListener {
-                        Toast.makeText(this@MainActivity, "SignIn Successfully", Toast.LENGTH_SHORT)
+                        Toast.makeText(this@MainActivity, "Google SignIn Successfully", Toast.LENGTH_SHORT)
                             .show()
                         startActivity(
                             Intent(this@MainActivity, HomeActivity::class.java).setFlags(
