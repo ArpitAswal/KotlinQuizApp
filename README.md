@@ -43,6 +43,8 @@ Note:  .If the user first register with Gmail/Password and then SignIn with Goog
 
 .Otherwise if the user SignIn with Google first then user can not register with that Gmail
 
+.For forgot password user has to enter his/her Gmail and the link will sent it. But here we can't fetch the password that user will set so the user has to update his password in Profile Setting
+
 ![IMG_20240523_213524](https://github.com/ArpitAswal/KotlinQuizApp/assets/87036588/d755fbf1-b6a9-4f57-9214-a71c82ad2b1c)
 ![Screenshot_2024-05-23-19-52-55-997_com example quizapp](https://github.com/ArpitAswal/KotlinQuizApp/assets/87036588/ff082e02-3e5d-44d3-8396-2c46232e4dea)
 
@@ -62,7 +64,8 @@ Note:  .If the user first register with Gmail/Password and then SignIn with Goog
 
 5. After submitting quiz before or after time complete results are displayed, it will showing the user's highest score. for now only top 5 highest score will display and only highest score will store and the best time of user
 
-   ![Screenshot_2024-05-24-22-40-13-673_com example quizapp](https://github.com/ArpitAswal/KotlinQuizApp/assets/87036588/59b44980-d8f0-49ef-a46d-193f51c2b6da)
+![IMG_20240524_234009](https://github.com/ArpitAswal/KotlinQuizApp/assets/87036588/fb382d73-0e95-4960-a5d4-1faa8d9e9705)
+
    
 
 
