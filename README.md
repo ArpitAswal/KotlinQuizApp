@@ -36,4 +36,17 @@ Firebase: For authentication and user management.
 
 Android SDK: For building and deploying the Android application.
 
+Usage Flow:
+
+User signs in or registers using Google Authentication or Gmail/Password.
+Note:  .If the user first register with Gmail/Password and then SignIn with Google then both provider linked together.
+. otherwise if the user SignIn with Google first then user can not register with that Gmail
+
+![IMG_20240523_213524](https://github.com/ArpitAswal/KotlinQuizApp/assets/87036588/d755fbf1-b6a9-4f57-9214-a71c82ad2b1c)
+
+User is directed to the Home Screen and enters their name to start the quiz.
+User answers 10 questions within 1 minute, navigating between questions as needed.
+Quiz results are displayed, showing the user's highest score.
+User can view the leaderboard, return to the Home Screen, start a new quiz, or sign out.
+
 
