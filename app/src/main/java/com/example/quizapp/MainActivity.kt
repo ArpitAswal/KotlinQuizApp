@@ -120,7 +120,7 @@ class MainActivity : AppCompatActivity() {
                                 auth.currentUser?.linkWithCredential(cred)?.addOnSuccessListener {
                                   navigate()
                                 }?.addOnFailureListener {
-                                    if(it.message.toString() == "User has already been linked to the given provider"){
+                                    if(it.message.toString() == "User has already been linked to the given provider."){
                                         navigate()
                                     }
                                     else {
